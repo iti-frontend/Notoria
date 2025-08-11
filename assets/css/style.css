@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter18pt-Light.woff2") format("woff2"),
+    url("../fonts/Inter18pt-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter18pt-Regular.woff2") format("woff2"),
+    url("../fonts/Inter18pt-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter18pt-Medium.woff2") format("woff2"),
+    url("../fonts/Inter18pt-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter18pt-SemiBold.woff2") format("woff2"),
+    url("../fonts/Inter18pt-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter18pt-Bold.woff2") format("woff2"),
+    url("../fonts/Inter18pt-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter18pt-ExtraBold.woff2") format("woff2"),
+    url("../fonts/Inter18pt-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* colors */
+
+  /* Font family */
+  --font-family-inter: "Inter", sans-serif;
+
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+}
+
+body {
+  font-family: var(--font-family-inter);
+  font-weight: var(--font-weight-regular);
+  color: var(--gray-700);
+}
+
+i {
+  color: inherit !important;
+  font-size: 1.5rem !important;
+}
+
+/* start navbar */
+.logo__image {
+  width: 40px;
+}
+/* end navbar */
+
+/* start login  */
+
+.login-body {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  font-family: "Inter", sans-serif;
+}
+
+.login-body .card {
+  border: none;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.login-body.card-title {
+  font-weight: 700;
+}
+
+.login-body .btn-primary {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.login-body .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-body i {
+  font-size: 1.2rem !important;
+}
+/* end login  */
