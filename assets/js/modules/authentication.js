@@ -1,4 +1,4 @@
-import { signUp, signIn, signOutUser } from "../servces/authServices.js";
+import { signUp, signIn, signOutUser } from "../../services/authServices.js";
 
 // register
 
