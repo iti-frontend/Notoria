@@ -5,11 +5,13 @@ import { signUp, signIn, signOutUser } from "../servces/authServices.js";
 export async function register() {
   const email = document.getElementById("InputEmail").value;
   const pass = document.getElementById("InputPassword").value;
+  const name = document.getElementById("InputName").value;
+  const phone = document.getElementById("InputPhone").value;
 
   try {
-    const userCredential = await signUp(email, pass);
-    console.log("User signed up:", userCredential.user.email);
-    console.log("User signed up:", userCredential.user.uid);
+    const user = await signUp(email, pass, name, phone);
+    console.log("User signed up:", user.email);
+    console.log("User signed up:", user.uid);
   } catch (error) {
     console.error("Error during sign-up:", error.message);
   }

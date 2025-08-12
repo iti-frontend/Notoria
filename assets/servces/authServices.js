@@ -7,16 +7,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
+  setDoc,
+  doc,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-import { auth } from "./firebase.js";
-import { db } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
 // register
-
 export async function signUp(email, password, name, phone) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -27,15 +24,14 @@ export async function signUp(email, password, name, phone) {
     const user = userCredential.user;
 
     // Store additional user data in Firestore
-    await addDoc(collection(db, "users"), {
+    await setDoc(doc(db, "users", user.uid), {
       uid: user.uid,
       name: name,
       phone: phone,
       email: email,
-      createdAt: new Date(),
     });
 
-    console.log("User signed up succeed");
+    console.log("User signed up successfully");
     return user;
   } catch (error) {
     console.error("Error during sign-up:", error.message);
