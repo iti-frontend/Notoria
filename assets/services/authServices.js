@@ -15,52 +15,45 @@ import { auth, db } from "./firebase.js";
 
 // register
 export async function signUp(email, password, name, phone) {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user = userCredential.user;
-
-    // Store additional user data in Firestore
-    await setDoc(doc(db, "users", user.uid), {
-      uid: user.uid,
-      name: name,
-      phone: phone,
-      email: email,
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      // Store additional user data in Firestore
+      setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        name: name,
+        phone: phone,
+        email: email,
+      });
+    })
+    .catch((error) => {
+      console.error("Error signing in:", error.message);
     });
-
-    console.log("User signed up successfully");
-    return user;
-  } catch (error) {
-    console.error("Error during sign-up:", error.message);
-    throw error;
-  }
+  console.log("User signed up successfully");
 }
 
-//----------------login
-export async function signIn(email, password) {
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    console.log("User signed in:", userCredential.user.email);
-    return userCredential;
-  } catch (error) {
-    console.error("Error during sign-in:", error.message);
-    throw error;
-  }
-}
+// //----------------login
+// export async function signIn(email, password) {
+//   try {
+//     const userCredential = await signInWithEmailAndPassword(
+//       auth,
+//       email,
+//       password
+//     );
+//     console.log("User signed in:", userCredential.user.email);
+//     return userCredential;
+//   } catch (error) {
+//     console.error("Error during sign-in:", error.message);
+//     throw error;
+//   }
+// }
 
-//----------------logout
-export async function signOutUser() {
-  try {
-    await signOut(auth);
-    console.log("User signed out");
-  } catch (error) {
-    console.error("Error during sign-out:", error.message);
-  }
-}
+// //----------------logout
+// export async function signOutUser() {
+//   try {
+//     await signOut(auth);
+//     console.log("User signed out");
+//   } catch (error) {
+//     console.error("Error during sign-out:", error.message);
+//   }
+// }

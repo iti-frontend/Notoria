@@ -1,4 +1,5 @@
-import { signUp, signIn, signOutUser } from "../../services/authServices.js";
+// import { signUp, signIn, signOutUser } from "../../services/authServices.js";
+import { signUp } from "../../services/authServices.js";
 
 // register
 
@@ -9,9 +10,9 @@ export async function register() {
   const phone = document.getElementById("phoneInput").value;
 
   try {
-    const user = await signUp(email, pass, name, phone);
-    console.log("User signed up:", user.email);
-    console.log("User signed up:", user.uid);
+    await signUp(email, pass, name, phone);
+    // console.log("User signed up:", user.email);
+    // console.log("User signed up:", user.uid);
   } catch (error) {
     console.error("Error during sign-up:", error.message);
   }
