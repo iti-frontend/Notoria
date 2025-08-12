@@ -3,10 +3,10 @@ import { signUp, signIn, signOutUser } from "../../services/authServices.js";
 // register
 
 export async function register() {
-  const email = document.getElementById("InputEmail").value;
-  const pass = document.getElementById("InputPassword").value;
-  const name = document.getElementById("InputName").value;
-  const phone = document.getElementById("InputPhone").value;
+  const email = document.getElementById("emailInput").value;
+  const pass = document.getElementById("passwordInput").value;
+  const name = document.getElementById("userNameInput").value;
+  const phone = document.getElementById("phoneInput").value;
 
   try {
     const user = await signUp(email, pass, name, phone);
