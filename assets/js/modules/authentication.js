@@ -1,10 +1,15 @@
-import { signUp, signIn, signOutUser } from "../servces/authServices.js";
+import { signUp, signIn, signOutUser } from "../../services/authServices.js";
 
 // register
 
 export async function register() {
-  const email = document.getElementById("InputEmail").value;
-  const pass = document.getElementById("InputPassword").value;
+  const email = document.getElementById("emailInput").value;
+  const pass = document.getElementById("passwordInput").value;
+
+  if (!email || !pass) {
+    console.warn("Email and password are required");
+    return;
+  }
 
   try {
     const userCredential = await signUp(email, pass);

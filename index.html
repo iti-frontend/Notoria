@@ -4,8 +4,6 @@
     <title>Notoria</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- icons css -->
-    <link rel="stylesheet" href=assets/css/icons.css" />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <!-- main css -->
@@ -16,9 +14,7 @@
     <nav class="navbar bg-body-tertiary fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-          <div class="logo__image">
-            <img src="assets/images/logo.svg" alt="logo image" class="w-100" />
-          </div>
+          <div id="logo"></div>
           Notoria
         </a>
         <button
@@ -142,8 +138,9 @@
     </nav>
     <!-- end navbar -->
 
+    <!-- main js -->
+    <script type="module" src="assets/js/main.js"></script>
     <!-- bootstrap js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/firebase_script.js"></script>
+    <script src="assets/js/mdb.umd.min.js"></script>
   </body>
 </html>

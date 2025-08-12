@@ -1,6 +1,16 @@
-import { register } from "./authentication.js";
+import { register } from "./modules/authentication.js";
+import { setLogoHTML } from "./modules/components.js";
 
-document.getElementById("register").addEventListener("click", (e) => {
-  e.preventDefault();
-  register();
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize components
+  setLogoHTML();
+
+  // Initialize events
+  const registerBtn = document.getElementById("register");
+  if (registerBtn) {
+    registerBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      register();
+    });
+  }
 });
