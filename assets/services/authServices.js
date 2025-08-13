@@ -16,20 +16,25 @@ import { auth, db } from "./firebase.js";
 // register
 export async function signUp(email, password, name, phone) {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       const user = userCredential.user;
       // Store additional user data in Firestore
-      setDoc(doc(db, "users", user.uid), {
+     await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         name: name,
         phone: phone,
         email: email,
       });
+    }).then(() => {
+      window.location.href = "index.html";
+      console.log("iam done");
+      // open("index.html","_self");
+      
     })
     .catch((error) => {
       console.error("Error signing in:", error.message);
     });
-  console.log("User signed up successfully");
+  // console.log("User signed up successfully");
 }
 
 // //----------------login

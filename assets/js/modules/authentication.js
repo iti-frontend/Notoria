@@ -34,6 +34,7 @@ export async function register() {
 
   try {
     await signUp(email, password, username, phone);
+    // window.location.href = "index.html";
     // console.log("User signed up:", user.email);
     // console.log("User signed up:", user.uid);
   } catch (error) {
