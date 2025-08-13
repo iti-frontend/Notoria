@@ -37,98 +37,86 @@
                     </h5>
                     <form class="d-flex flex-column gap-3">
                       <!-- User Name input -->
-                      <div data-mdb-input-init class="form-outline">
+                      <div class="form-floating">
                         <input
                           type="text"
                           id="userNameInput"
-                          class="form-control form-control-lg"
+                          class="form-control"
+                          placeholder="Enter your user name"
                         />
-                        <label class="form-label" for="userNameInput"
-                          >User Name</label
-                        >
+                        <label for="userNameInput">User Name</label>
                         <div
                           id="userNameInputFeedback"
                           class="invalid-feedback"
-                          style="display: none"
                         ></div>
                       </div>
 
                       <!-- Email Input -->
-                      <div data-mdb-input-init class="form-outline">
+                      <div class="form-floating">
                         <input
                           type="email"
                           id="emailInput"
-                          class="form-control form-control-lg"
+                          class="form-control"
+                          placeholder="Enter your Email"
                         />
-                        <label class="form-label" for="emailInput"
-                          >Email address</label
-                        >
+                        <label for="emailInput">Email address</label>
                         <div
                           id="emailInputFeedback"
                           class="invalid-feedback"
-                          style="display: none"
                         ></div>
                       </div>
 
                       <!-- Password Inout -->
-                      <div data-mdb-input-init class="form-outline">
+                      <div class="form-floating">
                         <input
                           type="password"
+                          class="form-control"
                           id="passwordInput"
-                          class="form-control form-control-lg"
+                          placeholder="Password"
                         />
-                        <label class="form-label" for="passwordInput"
-                          >Password</label
-                        >
+                        <label for="password">Password</label>
                         <div
                           id="passwordInputFeedback"
                           class="invalid-feedback"
-                          style="display: none"
                         ></div>
                       </div>
 
                       <!-- rePassword Inout -->
-                      <div data-mdb-input-init class="form-outline">
+                      <div class="form-floating">
                         <input
                           type="password"
+                          class="form-control"
                           id="rePasswordInput"
-                          class="form-control form-control-lg"
+                          placeholder="rePassword"
                         />
-                        <label class="form-label" for="rePasswordInput"
+                        <label for="rePasswordInput"
                           >Enter your password again</label
                         >
                         <div
                           id="rePasswordInputFeedback"
                           class="invalid-feedback"
-                          style="display: none"
                         ></div>
                       </div>
 
                       <!-- phone Inout -->
-                      <div data-mdb-input-init class="form-outline">
+                      <div class="form-floating">
                         <input
                           type="tel"
+                          class="form-control"
                           id="phoneInput"
-                          class="form-control form-control-lg"
+                          placeholder="Enter your phone"
                         />
-                        <label class="form-label" for="phoneInput"
-                          >Phone Number</label
-                        >
+                        <label for="phoneInput">Phone Number</label>
                         <div
                           id="phoneInputFeedback"
                           class="invalid-feedback"
-                          style="display: none"
                         ></div>
                       </div>
 
                       <button
-                        data-mdb-button-init
-                        data-mdb-ripple-init
-                        class="btn btn-dark btn-lg btn-block"
-                        type="button"
-                        ,
+                        class="btn btn-dark btn-lg btn-block d-flex justify-content-center align-items-center"
+                        type="submit"
                         id="register"
-                        ,
                       >
                         sign up
                       </button>
@@ -204,6 +192,6 @@
     <!-- main js -->
     <script type="module" src="assets/js/main.js"></script>
     <!-- MDB js -->
-    <script src="assets/js/mdb.umd.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
   </body>
 </html>

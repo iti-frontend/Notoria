@@ -1,5 +1,6 @@
 // import { signUp, signIn, signOutUser } from "../../services/authServices.js";
 import { signUp } from "../../services/authServices.js";
+import { showAlertModal } from "./components.js";
 import { validator } from "./validation.js";
 
 // register
@@ -10,6 +11,7 @@ export async function register() {
   const rePassword = document.getElementById("rePasswordInput").value;
   const username = document.getElementById("userNameInput").value;
   const phone = document.getElementById("phoneInput").value;
+  const registerBtn = document.getElementById("register");
 
   // Create form data object for validation
   const formData = {
@@ -17,7 +19,7 @@ export async function register() {
     email: email,
     password: password,
     rePassword: rePassword,
-    phone: phone
+    phone: phone,
   };
 
   // Validate form data
@@ -30,26 +32,36 @@ export async function register() {
   }
 
   // Clear any previous validation errors if form is valid
-  validator.clearFieldErrors(['userNameInput', 'emailInput', 'passwordInput', 'rePasswordInput', 'phoneInput']);
-
+  validator.clearFieldErrors([
+    "userNameInput",
+    "emailInput",
+    "passwordInput",
+    "rePasswordInput",
+    "phoneInput",
+  ]);
+  registerBtn.disabled = true;
+  registerBtn.innerHTML = `<span class="loader"></span>`;
   try {
     await signUp(email, password, username, phone);
     // console.log("User signed up:", user.email);
     // console.log("User signed up:", user.uid);
   } catch (error) {
     console.error("Error during sign-up:", error.message);
-    
+
     // Display server-side errors
-    if (error.message.includes('email-already-in-use')) {
-      validator.addError('email', 'This email is already registered');
+    if (error.message.includes("email-already-in-use")) {
+      validator.addError("email", "This email is already registered");
       validator.displayValidationErrors();
-    } else if (error.message.includes('weak-password')) {
-      validator.addError('password', 'Password is too weak');
+    } else if (error.message.includes("weak-password")) {
+      validator.addError("password", "Password is too weak");
       validator.displayValidationErrors();
     } else {
       // Show generic error message
-      alert('Registration failed: ' + error.message);
+      showAlertModal("Registration Failed", error.message);
     }
+  } finally {
+    registerBtn.disabled = false;
+    registerBtn.textContent = "sign up";
   }
 }
 
