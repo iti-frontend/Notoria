@@ -1,3 +1,4 @@
+// logo
 export function setLogoHTML() {
   const logo = document.getElementById("logo");
   if (!logo) {
@@ -85,4 +86,34 @@ export function setLogoHTML() {
   <path d="M 40 70 L 40 80 L 45 75 L 45 80 L 47 80 L 47 70 L 42 75 L 42 70 Z" 
         fill="url(#primaryGradient)" opacity="0.8"/>
 </svg>`;
+}
+
+// model
+export function showAlertModal(title, message) {
+  const existingModal = document.getElementById("alertModal");
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  const modalHTML = `
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">${title}</h5>
+            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">${message}</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML("beforeend", modalHTML);
+
+  const modal = new mdb.Modal(document.getElementById("alertModal"));
+  modal.show();
 }

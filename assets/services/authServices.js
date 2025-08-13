@@ -12,6 +12,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 import { auth, db } from "./firebase.js";
+import { showAlertModal } from "../js/modules/components.js";
 
 // register
 export async function signUp(email, password, name, phone) {
@@ -32,7 +33,7 @@ export async function signUp(email, password, name, phone) {
       
     })
     .catch((error) => {
-      console.error("Error signing in:", error.message);
+      showAlertModal("Error signing in:", error.message);
     });
   // console.log("User signed up successfully");
 }
