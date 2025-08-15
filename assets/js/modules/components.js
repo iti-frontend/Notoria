@@ -88,32 +88,29 @@ export function setLogoHTML() {
 </svg>`;
 }
 
-// model
-export function showAlertModal(title, message) {
-  const existingModal = document.getElementById("alertModal");
-  if (existingModal) {
-    existingModal.remove();
+// toast
+export function showToast(message, type = "danger", delay = 3000) {
+  let ToastContainer = document.querySelector(".toast-container");
+  if (!ToastContainer) {
+    ToastContainer = document.createElement("div");
+    ToastContainer.className =
+      "toast-container position-fixed bottom-0 end-0 p-3";
+    document.body.appendChild(ToastContainer);
   }
 
-  const modalHTML = `
-    <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">${title}</h5>
-            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">${message}</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">OK</button>
-          </div>
-        </div>
+  const toastContent = `<div class="toast align-items-center text-bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">${message}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
-    </div>
-  `;
+    </div>`;
 
-  document.body.insertAdjacentHTML("beforeend", modalHTML);
+  ToastContainer.insertAdjacentHTML("beforeend", toastContent);
 
-  const modal = new mdb.Modal(document.getElementById("alertModal"));
-  modal.show();
+  const toastEl = ToastContainer.lastElementChild;
+  const toast = new bootstrap.Toast(toastEl, { delay });
+
+  toast.show();
+
+  toastEl.addEventListener("hidden.bs.toast", () => toastEl.remove());
 }

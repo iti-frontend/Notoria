@@ -5,32 +5,33 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
 import {
   setDoc,
   doc,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 import { auth, db } from "./firebase.js";
-import { showAlertModal } from "../js/modules/components.js";
 
-// register
 export async function signUp(email, password, name, phone) {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      // Store additional user data in Firestore
-      setDoc(doc(db, "users", user.uid), {
-        uid: user.uid,
-        name: name,
-        phone: phone,
-        email: email,
-      });
-    })
-    .catch((error) => {
-      showAlertModal("Error signing in:", error.message);
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+
+    await setDoc(doc(db, "users", user.uid), {
+      uid: user.uid,
+      name,
+      phone,
+      email,
     });
-  console.log("User signed up successfully");
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
 }
 
 // //----------------login

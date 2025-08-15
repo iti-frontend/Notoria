@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/mdb.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <!-- Your custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -18,14 +18,13 @@
             <div class="card" style="border-radius: 1rem">
               <div class="row g-0">
                 <!-- form sections -->
-                <div
-                  class="col-md-6 col-lg-7 d-flex align-items-center text-center"
-                >
+                <div class="col-lg-7 d-flex align-items-center text-center">
                   <div class="card-body p-4 p-lg-5 pb-0 pb-lg-0 text-black">
+                    <!-- Start Page Title -->
                     <div
                       class="d-flex align-items-center justify-content-center gap-2 mb-3 pb-1"
                     >
-                      <a href="#" id="logo" class=""></a>
+                      <spam id="logo"></spam>
                       <span class="h1 fw-bold mb-0">Notoria</span>
                     </div>
 
@@ -35,7 +34,14 @@
                     >
                       Sign into your account
                     </h5>
-                    <form class="d-flex flex-column gap-3">
+                    <!-- End Page Title -->
+
+                    <!-- Start Registration Form -->
+                    <form
+                      class="d-flex flex-column gap-3"
+                      id="registerForm"
+                      novalidate
+                    >
                       <!-- User Name input -->
                       <div class="form-floating">
                         <input
@@ -45,10 +51,7 @@
                           placeholder="Enter your user name"
                         />
                         <label for="userNameInput">User Name</label>
-                        <div
-                          id="userNameInputFeedback"
-                          class="invalid-feedback"
-                        ></div>
+                        <div class="invalid-feedback"></div>
                       </div>
 
                       <!-- Email Input -->
@@ -60,10 +63,7 @@
                           placeholder="Enter your Email"
                         />
                         <label for="emailInput">Email address</label>
-                        <div
-                          id="emailInputFeedback"
-                          class="invalid-feedback"
-                        ></div>
+                        <div class="invalid-feedback"></div>
                       </div>
 
                       <!-- Password Inout -->
@@ -75,10 +75,7 @@
                           placeholder="Password"
                         />
                         <label for="password">Password</label>
-                        <div
-                          id="passwordInputFeedback"
-                          class="invalid-feedback"
-                        ></div>
+                        <div class="invalid-feedback"></div>
                       </div>
 
                       <!-- rePassword Inout -->
@@ -92,10 +89,7 @@
                         <label for="rePasswordInput"
                           >Enter your password again</label
                         >
-                        <div
-                          id="rePasswordInputFeedback"
-                          class="invalid-feedback"
-                        ></div>
+                        <div class="invalid-feedback"></div>
                       </div>
 
                       <!-- phone Inout -->
@@ -107,10 +101,7 @@
                           placeholder="Enter your phone"
                         />
                         <label for="phoneInput">Phone Number</label>
-                        <div
-                          id="phoneInputFeedback"
-                          class="invalid-feedback"
-                        ></div>
+                        <div class="invalid-feedback"></div>
                       </div>
 
                       <button
@@ -121,6 +112,7 @@
                         sign up
                       </button>
                     </form>
+                    <!-- End Registration Form -->
                     <div
                       class="login__methods d-flex gap-3 justify-content-center align-items-center my-4"
                     >
@@ -174,7 +166,7 @@
                   </div>
                 </div>
                 <!-- image sections -->
-                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <div class="col-md-6 col-lg-5 d-none d-lg-block">
                   <img
                     src="assets/images/authentication.webp"
                     alt="girl taking notes"
@@ -189,9 +181,10 @@
       </div>
     </section>
 
+    <!-- bootstrap js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+
     <!-- main js -->
     <script type="module" src="assets/js/main.js"></script>
-    <!-- MDB js -->
-    <script src="assets/js/bootstrap.min.js"></script>
   </body>
 </html>
