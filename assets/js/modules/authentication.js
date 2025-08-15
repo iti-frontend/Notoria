@@ -1,10 +1,7 @@
 import { showToast } from "./components.js";
 import { FormValidator } from "./validation.js";
 import { signUp, signOutUser } from "../../services/authServices.js";
-// import { showAlertModal } from "./components.js";
-// import { validator } from "./validation.js";
 
-// Only create validator if registerForm exists on the page
 let validator = null;
 const registerForm = document.getElementById("registerForm");
 if (registerForm) {
@@ -76,7 +73,7 @@ export async function register() {
 //     console.log("Login successful - auth listener will handle redirect");
 //   } catch (error) {
 //     console.error("Error during login:", error.message);
-    
+
 //     // Display user-friendly error messages
 //     if (error.message.includes("user-not-found")) {
 //       showAlertModal("Login Failed", "No user found with this email address");
@@ -99,9 +96,10 @@ export async function register() {
 export async function logout() {
   try {
     await signOutUser();
-    console.log("Logout successful - auth listener will handle redirect");
+
+    showToast("Logout successful", "success");
   } catch (error) {
     console.error("Error during logout:", error.message);
-    showAlertModal("Logout Failed", error.message);
+    showToast("Logout Failed");
   }
 }
