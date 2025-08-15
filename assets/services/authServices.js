@@ -13,6 +13,7 @@ import {
 import { auth, db } from "./firebase.js";
 
 export async function signUp(email, password, name, phone) {
+<<<<<<< HEAD
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -32,6 +33,28 @@ export async function signUp(email, password, name, phone) {
   } catch (error) {
     throw error;
   }
+=======
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+      const user = userCredential.user;
+      // Store additional user data in Firestore
+     await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        name: name,
+        phone: phone,
+        email: email,
+      });
+    }).then(() => {
+      window.location.href = "index.html";
+      console.log("iam done");
+      // open("index.html","_self");
+      
+    })
+    .catch((error) => {
+      showAlertModal("Error signing in:", error.message);
+    });
+  // console.log("User signed up successfully");
+>>>>>>> ccbf97a00df7d9470b6099b4d878d7fbb631891f
 }
 
 // //----------------login
