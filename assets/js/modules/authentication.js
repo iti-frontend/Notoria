@@ -20,16 +20,9 @@ export async function register() {
   registerBtn.innerHTML = `<span class="loader"></span>`;
 
   try {
-<<<<<<< HEAD
-    const user = await signUp(email, password, username, phone);
+    await signUp(email, password, username, phone);
     validator.clearForm();
     showToast("Account created successfully!", "success");
-=======
-    await signUp(email, password, username, phone);
-    // window.location.href = "index.html";
-    // console.log("User signed up:", user.email);
-    // console.log("User signed up:", user.uid);
->>>>>>> ccbf97a00df7d9470b6099b4d878d7fbb631891f
   } catch (error) {
     console.error("Error during sign-up:", error.message);
 
