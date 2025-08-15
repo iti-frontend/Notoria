@@ -1,63 +1,41 @@
+import { showToast } from "./components.js";
+import { FormValidator } from "./validation.js";
 import { signUp, signIn, signOutUser } from "../../services/authServices.js";
 import { showAlertModal } from "./components.js";
 import { validator } from "./validation.js";
 
-// register
+const validator = new FormValidator("registerForm");
 
 export async function register() {
-  const email = document.getElementById("emailInput").value;
-  const password = document.getElementById("passwordInput").value;
-  const rePassword = document.getElementById("rePasswordInput").value;
-  const username = document.getElementById("userNameInput").value;
-  const phone = document.getElementById("phoneInput").value;
   const registerBtn = document.getElementById("register");
 
-  // Create form data object for validation
-  const formData = {
-    username: username,
-    email: email,
-    password: password,
-    rePassword: rePassword,
-    phone: phone,
-  };
-
-  // Validate form data
-  const isValid = validator.validateRegistrationForm(formData);
-
-  if (!isValid) {
-    // Display validation errors
-    validator.displayValidationErrors();
-    return; // Stop registration if validation fails
+  if (!validator.validateForm()) {
+    return;
   }
 
-  // Clear any previous validation errors if form is valid
-  validator.clearFieldErrors([
-    "userNameInput",
-    "emailInput",
-    "passwordInput",
-    "rePasswordInput",
-    "phoneInput",
-  ]);
+  const email = document.getElementById("emailInput").value;
+  const password = document.getElementById("passwordInput").value;
+  const username = document.getElementById("userNameInput").value;
+  const phone = document.getElementById("phoneInput").value;
+
   registerBtn.disabled = true;
   registerBtn.innerHTML = `<span class="loader"></span>`;
+
   try {
     await signUp(email, password, username, phone);
-    console.log("Signup successful - auth listener will handle redirect");
-
-
+    validator.clearForm();
+    showToast("Account created successfully!", "success");
   } catch (error) {
     console.error("Error during sign-up:", error.message);
 
-    // Display server-side errors
-    if (error.message.includes("email-already-in-use")) {
-      validator.addError("email", "This email is already registered");
-      validator.displayValidationErrors();
-    } else if (error.message.includes("weak-password")) {
-      validator.addError("password", "Password is too weak");
-      validator.displayValidationErrors();
+    if (error.code === "auth/email-already-in-use") {
+      validator.validateField(document.getElementById("emailInput"));
+      showToast("This email is already registered");
+    } else if (error.code === "auth/weak-password") {
+      validator.validateField(document.getElementById("passwordInput"));
+      showToast("Password is too weak");
     } else {
-      // Show generic error message
-      showAlertModal("Registration Failed", error.message);
+      showToast("Registration failed. Please try again");
     }
   } finally {
     registerBtn.disabled = false;
