@@ -1,15 +1,21 @@
 import { showToast } from "./components.js";
 import { FormValidator } from "./validation.js";
-import { signUp, signIn, signOutUser } from "../../services/authServices.js";
-import { showAlertModal } from "./components.js";
-import { validator } from "./validation.js";
+import { signUp, signOutUser } from "../../services/authServices.js";
+// import { showAlertModal } from "./components.js";
+// import { validator } from "./validation.js";
 
-const validator = new FormValidator("registerForm");
+// Only create validator if registerForm exists on the page
+let validator = null;
+const registerForm = document.getElementById("registerForm");
+if (registerForm) {
+  validator = new FormValidator("registerForm");
+}
 
 export async function register() {
   const registerBtn = document.getElementById("register");
 
-  if (!validator.validateForm()) {
+  // Check if validator exists and form is valid
+  if (!validator || !validator.validateForm()) {
     return;
   }
 
@@ -23,16 +29,22 @@ export async function register() {
 
   try {
     await signUp(email, password, username, phone);
-    validator.clearForm();
+    if (validator) {
+      validator.clearForm();
+    }
     showToast("Account created successfully!", "success");
   } catch (error) {
     console.error("Error during sign-up:", error.message);
 
     if (error.code === "auth/email-already-in-use") {
-      validator.validateField(document.getElementById("emailInput"));
+      if (validator) {
+        validator.validateField(document.getElementById("emailInput"));
+      }
       showToast("This email is already registered");
     } else if (error.code === "auth/weak-password") {
-      validator.validateField(document.getElementById("passwordInput"));
+      if (validator) {
+        validator.validateField(document.getElementById("passwordInput"));
+      }
       showToast("Password is too weak");
     } else {
       showToast("Registration failed. Please try again");

@@ -1,6 +1,6 @@
-import { register, login } from "./modules/authentication.js";
+import { register} from "./modules/authentication.js";
 import { setLogoHTML } from "./modules/components.js";
-import { validator } from "./modules/validation.js";
+//  import { validator } from "./modules/validation.js";
 import { checkAuthState } from "../services/authServices.js";
 
 // Check auth state when page loads
@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize components
   setLogoHTML();
   
-  // Initialize real-time validation
-  validator.setupRealTimeValidation();
+  // Real-time validation is automatically set up by the FormValidator 
+  // constructor in authentication.js when registerForm exists
 
   // Initialize events
   const registerBtn = document.getElementById("register");
