@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
@@ -27,10 +28,7 @@ export async function signUp(email, password, name, phone) {
         email: email,
       });
     }).then(() => {
-      window.location.href = "index.html";
-      console.log("iam done");
-      // open("index.html","_self");
-      
+       console.log("Registration complete - user will be redirected by auth state listener");
     })
     .catch((error) => {
       showAlertModal("Error signing in:", error.message);
@@ -54,12 +52,35 @@ export async function signUp(email, password, name, phone) {
 //   }
 // }
 
-// //----------------logout
-// export async function signOutUser() {
-//   try {
-//     await signOut(auth);
-//     console.log("User signed out");
-//   } catch (error) {
-//     console.error("Error during sign-out:", error.message);
-//   }
-// }
+export function checkAuthState() {
+  onAuthStateChanged(auth, (user) => {
+    const currentPage = window.location.pathname;
+    console.log("Auth state changed - user:", user);
+    
+    if (user) {
+      console.log("User is logged in:", user.uid);
+      // Only redirect to index.html if we're NOT already there
+      if (!currentPage.includes('index.html') && currentPage !== '/') {
+        console.log("Redirecting to index.html from:", currentPage);
+        window.location.href = "index.html";
+      }
+    } else {
+      console.log("No user logged in");
+      // Only redirect to login if we're on a protected page (index.html)
+      if (currentPage.includes('index.html') || currentPage === '/') {
+        console.log("Redirecting to login.html from:", currentPage);
+        window.location.href = "login.html";
+      }
+    }
+  });
+}
+
+//----------------logout
+export async function signOutUser() {
+  try {
+    await signOut(auth);
+    console.log("User signed out");
+  } catch (error) {
+    console.error("Error during sign-out:", error.message);
+  }
+}

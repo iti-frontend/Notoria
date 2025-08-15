@@ -1,5 +1,4 @@
-// import { signUp, signIn, signOutUser } from "../../services/authServices.js";
-import { signUp } from "../../services/authServices.js";
+import { signUp, signIn, signOutUser } from "../../services/authServices.js";
 import { showAlertModal } from "./components.js";
 import { validator } from "./validation.js";
 
@@ -43,9 +42,9 @@ export async function register() {
   registerBtn.innerHTML = `<span class="loader"></span>`;
   try {
     await signUp(email, password, username, phone);
-    // window.location.href = "index.html";
-    // console.log("User signed up:", user.email);
-    // console.log("User signed up:", user.uid);
+    console.log("Signup successful - auth listener will handle redirect");
+
+
   } catch (error) {
     console.error("Error during sign-up:", error.message);
 
@@ -66,6 +65,53 @@ export async function register() {
   }
 }
 
-// TODO: login with authServices
+// // Login function
+// export async function login() {
+//   const email = document.getElementById("emailInput").value;
+//   const password = document.getElementById("passwordInput").value;
+//   const loginBtn = document.querySelector('button[type="button"]');
 
-//TODO: signout with authServices
+//   // Basic validation
+//   if (!email || !password) {
+//     showAlertModal("Validation Error", "Please fill in all fields");
+//     return;
+//   }
+
+//   // Disable button and show loading
+//   loginBtn.disabled = true;
+//   loginBtn.innerHTML = `<span class="loader"></span>`;
+
+//   try {
+//     await signIn(email, password);
+//     console.log("Login successful - auth listener will handle redirect");
+//   } catch (error) {
+//     console.error("Error during login:", error.message);
+    
+//     // Display user-friendly error messages
+//     if (error.message.includes("user-not-found")) {
+//       showAlertModal("Login Failed", "No user found with this email address");
+//     } else if (error.message.includes("wrong-password")) {
+//       showAlertModal("Login Failed", "Incorrect password");
+//     } else if (error.message.includes("invalid-email")) {
+//       showAlertModal("Login Failed", "Invalid email address");
+//     } else if (error.message.includes("too-many-requests")) {
+//       showAlertModal("Login Failed", "Too many failed attempts. Please try again later");
+//     } else {
+//       showAlertModal("Login Failed", error.message);
+//     }
+//   } finally {
+//     loginBtn.disabled = false;
+//     loginBtn.textContent = "Login";
+//   }
+// }
+
+// Logout function
+export async function logout() {
+  try {
+    await signOutUser();
+    console.log("Logout successful - auth listener will handle redirect");
+  } catch (error) {
+    console.error("Error during logout:", error.message);
+    showAlertModal("Logout Failed", error.message);
+  }
+}
