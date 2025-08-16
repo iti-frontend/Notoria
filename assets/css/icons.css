@@ -82,3 +82,9 @@
 .icon-google:before {
   content: "\f1a0";
 }
+.icon-eye:before {
+  content: "\f06e";
+}
+.icon-eye-slash:before {
+  content: "\f070";
+}

@@ -1,4 +1,4 @@
-import { logout, register } from "./modules/authentication.js";
+import { logout, register, showPassword } from "./modules/authentication.js";
 import { setLogoHTML } from "./modules/components.js";
 //  import { validator } from "./modules/validation.js";
 import { checkAuthState } from "../services/authServices.js";
@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
       logout();
     });
   }
+
+  showPassword();
 
   // Add login button event listener
   // const loginBtn = document.querySelector('button[type="button"]');

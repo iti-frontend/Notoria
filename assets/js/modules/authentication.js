@@ -24,7 +24,6 @@ export async function register() {
   registerBtn.disabled = true;
   registerBtn.innerHTML = `<span class="loader"></span>`;
 
-  
   try {
     const result = await signUp(email, password, username, phone);
     if (result.success) {
@@ -32,7 +31,7 @@ export async function register() {
         validator.clearForm();
       }
       showToast("Account created successfully! Redirecting...", "success");
-      
+
       // انتظار قصير قبل إعادة التوجيه للتأكد من اكتمال العمليات
       setTimeout(() => {
         window.location.href = "index.html";
@@ -110,4 +109,39 @@ export async function logout() {
     console.error("Error during logout:", error.message);
     showToast("Logout Failed");
   }
+}
+
+export function showPassword() {
+  const toggleBtns = document.querySelectorAll(".toggle-password");
+
+  toggleBtns.forEach((btn) => {
+    const targetId = btn.getAttribute("data-target");
+    const input = document.getElementById(targetId);
+    const icon = btn.querySelector("i");
+
+    btn.style.display = "none";
+
+    input.addEventListener("input", () => {
+      if (input.value.trim().length > 0) {
+        btn.style.display = "inline-flex";
+      } else {
+        btn.style.display = "none";
+        input.type = "password";
+        icon.classList.remove("icon-eye");
+        icon.classList.add("icon-eye-slash");
+      }
+    });
+
+    btn.addEventListener("click", () => {
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("icon-eye-slash");
+        icon.classList.add("icon-eye");
+      } else {
+        input.type = "password";
+        icon.classList.remove("icon-eye");
+        icon.classList.add("icon-eye-slash");
+      }
+    });
+  });
 }
