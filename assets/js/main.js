@@ -1,4 +1,4 @@
-import { register} from "./modules/authentication.js";
+import { logout, register } from "./modules/authentication.js";
 import { setLogoHTML } from "./modules/components.js";
 //  import { validator } from "./modules/validation.js";
 import { checkAuthState } from "../services/authServices.js";
@@ -9,8 +9,8 @@ checkAuthState();
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize components
   setLogoHTML();
-  
-  // Real-time validation is automatically set up by the FormValidator 
+
+  // Real-time validation is automatically set up by the FormValidator
   // constructor in authentication.js when registerForm exists
 
   // Initialize events
@@ -19,6 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
     registerBtn.addEventListener("click", (e) => {
       e.preventDefault();
       register();
+    });
+  }
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      logout();
     });
   }
 
