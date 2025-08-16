@@ -24,12 +24,20 @@ export async function register() {
   registerBtn.disabled = true;
   registerBtn.innerHTML = `<span class="loader"></span>`;
 
+  
   try {
-    await signUp(email, password, username, phone);
-    if (validator) {
-      validator.clearForm();
+    const result = await signUp(email, password, username, phone);
+    if (result.success) {
+      if (validator) {
+        validator.clearForm();
+      }
+      showToast("Account created successfully! Redirecting...", "success");
+      
+      // انتظار قصير قبل إعادة التوجيه للتأكد من اكتمال العمليات
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1500);
     }
-    showToast("Account created successfully!", "success");
   } catch (error) {
     console.error("Error during sign-up:", error.message);
 
