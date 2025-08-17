@@ -32,9 +32,8 @@ export async function register() {
       }
       showToast("Account created successfully! Redirecting...", "success");
 
-      // انتظار قصير قبل إعادة التوجيه للتأكد من اكتمال العمليات
       setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "home.html";
       }, 1500);
     }
   } catch (error) {
@@ -59,45 +58,51 @@ export async function register() {
   }
 }
 
-// // Login function
-// export async function login() {
-//   const email = document.getElementById("emailInput").value;
-//   const password = document.getElementById("passwordInput").value;
-//   const loginBtn = document.querySelector('button[type="button"]');
+// Login function
+export async function login(e) {
+  e.preventDefault();
+  const email = document.getElementById("emailInput").value;
+  const password = document.getElementById("passwordInput").value;
+  const loginBtn = document.querySelector("#loginBtn");
 
-//   // Basic validation
-//   if (!email || !password) {
-//     showAlertModal("Validation Error", "Please fill in all fields");
-//     return;
-//   }
+  // Basic validation
+  if (!email || !password) {
+    showToast("Please fill in all fields");
+    return;
+  }
 
-//   // Disable button and show loading
-//   loginBtn.disabled = true;
-//   loginBtn.innerHTML = `<span class="loader"></span>`;
+  // Disable button and show loading
+  loginBtn.disabled = true;
+  loginBtn.innerHTML = `<span class="loader"></span>`;
 
-//   try {
-//     await signIn(email, password);
-//     console.log("Login successful - auth listener will handle redirect");
-//   } catch (error) {
-//     console.error("Error during login:", error.message);
+  try {
+    await signIn(email, password);
+    console.log("Login successful - auth listener will handle redirect");
+  } catch (error) {
+    console.error("Error during login:", error);
 
-//     // Display user-friendly error messages
-//     if (error.message.includes("user-not-found")) {
-//       showAlertModal("Login Failed", "No user found with this email address");
-//     } else if (error.message.includes("wrong-password")) {
-//       showAlertModal("Login Failed", "Incorrect password");
-//     } else if (error.message.includes("invalid-email")) {
-//       showAlertModal("Login Failed", "Invalid email address");
-//     } else if (error.message.includes("too-many-requests")) {
-//       showAlertModal("Login Failed", "Too many failed attempts. Please try again later");
-//     } else {
-//       showAlertModal("Login Failed", error.message);
-//     }
-//   } finally {
-//     loginBtn.disabled = false;
-//     loginBtn.textContent = "Login";
-//   }
-// }
+    // Display user-friendly error messages
+    switch (error.code) {
+      case "auth/user-not-found":
+        showToast("No user found with this email address");
+        break;
+      case "auth/wrong-password":
+        showToast("Incorrect password");
+        break;
+      case "auth/invalid-email":
+        showToast("Invalid email address");
+        break;
+      case "auth/too-many-requests":
+        showToast("Too many failed attempts. Please try again later");
+        break;
+      default:
+        showToast(error.message);
+    }
+  } finally {
+    loginBtn.disabled = false;
+    loginBtn.textContent = "Login";
+  }
+}
 
 // Logout function
 export async function logout() {
