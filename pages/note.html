@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Note Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- icons css -->
+    <link rel="stylesheet" href="../assets/css/icons.css" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../assets/css/mdb.min.css" />
+    <!-- main css -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <div id="logo"></div>
+          Notoria
+        </a>
+      </div>
+    </nav>
+
+    <!-- note body -->
+    <div class="note__body py-3">
+      <div class="container">
+        <div
+          class="note__navigation d-flex align-items-center justify-content-between pb-2"
+        >
+          <a
+            href="../home.html"
+            class="d-flex align-items-center gap-1 text-muted"
+            ><i class="icon-chevron-left"></i> Go Back
+          </a>
+          <ul class="list-unstyled d-flex gap-2 align-items-center mb-0">
+            <li><i class="icon-trash"></i></li>
+            <li><i class="icon-archive"></i></li>
+            <li class="text-muted">Cancel</li>
+            <li class="text-primary">Save Note</li>
+          </ul>
+        </div>
+        <div class="note__details border-top border-bottom">
+          <h5 class="note__title">React Performance Optimization</h5>
+          <div class="row">
+            <div class="col-5"><i class="icon-tags"></i> Tags</div>
+            <div class="col-6">Dev,React</div>
+          </div>
+          <div class="row">
+            <div class="col-5"><i class="icon-tags"></i> Last Edited</div>
+            <div class="col-6">29 Oct 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- main js -->
+    <script type="module" src="../assets/js/main.js"></script>
+    <!-- bootstrap js -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+  </body>
+</html>

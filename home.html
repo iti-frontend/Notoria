@@ -11,7 +11,7 @@
   </head>
   <body>
     <!-- start navbar -->
-    <nav class="navbar bg-body-tertiary fixed-top">
+    <nav class="navbar bg-body-tertiary sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="#">
           <div id="logo"></div>
@@ -138,7 +138,27 @@
       </div>
     </nav>
     <!-- end navbar -->
+    <main>
+      <!-- start notes section -->
+      <section>
+        <div class="container p-4">
+          <button class="btn btn-dark w-100">+ Create New Note</button>
 
+          <div class="notes__container mt-4">
+            <div
+              class="note__card border p-3 rounded-5 d-flex flex-column gap-1 shadow-sm"
+            >
+              <h5 class="note-title">React Performance Optimization</h5>
+              <div class="note__tags--container d-flex gap-2">
+                <span class="note-tag px-3 py-1">Dev</span>
+                <span class="note-tag px-3 py-1">React</span>
+              </div>
+              <time class="note-time">29 Oct 2025</time>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <!-- main js -->
     <script type="module" src="assets/js/main.js"></script>
     <!-- bootstrap js -->

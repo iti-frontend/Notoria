@@ -40,6 +40,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .icon-user:before {
   content: "\f007";
 }
@@ -82,9 +98,15 @@
 .icon-google:before {
   content: "\f1a0";
 }
+.icon-chevron-left:before {
+  content: "\f053";
+}
 .icon-eye:before {
   content: "\f06e";
 }
 .icon-eye-slash:before {
   content: "\f070";
+}
+.icon-trash:before {
+  content: "\f1f8";
 }

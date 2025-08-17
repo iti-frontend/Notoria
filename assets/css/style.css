@@ -149,3 +149,36 @@ i {
 }
 
 /* end login  */
+.note__card {
+  transition: all 0.5s;
+}
+.note__card:hover {
+  background-color: #f8f9fa;
+}
+.note-title {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.note__tag {
+  font-size: 12px;
+  border: 1px solid #b8b8b8;
+  padding: 2px 12px;
+  font-weight: 500;
+  border-radius: 6px;
+}
+.note-tag {
+  background: #f0f0f0;
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 20px;
+}
+
+.note-time {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.note__body i {
+  font-size: 18px !important;
+}
