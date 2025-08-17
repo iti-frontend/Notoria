@@ -75,9 +75,7 @@ export function checkAuthState() {
       "/forgot-password.html",
       "/",
     ];
-    if (sessionStorage.getItem("processingLogin")) {
-      return;
-    }
+
     if (user) {
       try {
         const userDocRef = doc(db, "users", user.uid);
