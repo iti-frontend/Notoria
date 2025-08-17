@@ -49,6 +49,7 @@ export async function signUp(email, password, name, phone) {
 }
 
 //----------------login
+// In authServices.js - add this export
 export async function signIn(email, password) {
   try {
     const userCredential = await signInWithEmailAndPassword(
@@ -56,7 +57,6 @@ export async function signIn(email, password) {
       email,
       password
     );
-    console.log("User signed in:", userCredential.user.email);
     return userCredential;
   } catch (error) {
     console.error("Error during sign-in:", error.message);
@@ -75,7 +75,9 @@ export function checkAuthState() {
       "/forgot-password.html",
       "/",
     ];
-
+    if (sessionStorage.getItem("processingLogin")) {
+      return;
+    }
     if (user) {
       try {
         const userDocRef = doc(db, "users", user.uid);

@@ -36,15 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Add login button event listener
-  // const loginBtn = document.querySelector('button[type="button"]');
-  // if (loginBtn && loginBtn.textContent.trim() === "Login") {
-  //   loginBtn.addEventListener("click", (e) => {
-  //     e.preventDefault();
-  //     login();
-  //   });
-  // }
-
   // ====== function calls
   showPassword();
 });

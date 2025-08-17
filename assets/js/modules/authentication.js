@@ -1,6 +1,6 @@
 import { showToast } from "./components.js";
 import { FormValidator } from "./validation.js";
-import { signUp, signOutUser } from "../../services/authServices.js";
+import { signUp, signOutUser, signIn } from "../../services/authServices.js";
 
 let validator = null;
 const registerForm = document.getElementById("registerForm");
@@ -65,39 +65,31 @@ export async function login(e) {
   const password = document.getElementById("passwordInput").value;
   const loginBtn = document.querySelector("#loginBtn");
 
-  // Basic validation
-  if (!email || !password) {
-    showToast("Please fill in all fields");
+  // Enhanced validation
+  if (!email || !email.includes("@")) {
+    showToast("Please enter a valid email address");
     return;
   }
 
-  // Disable button and show loading
+  if (!password || password.length < 6) {
+    showToast("Password must be at least 6 characters");
+    return;
+  }
+
   loginBtn.disabled = true;
   loginBtn.innerHTML = `<span class="loader"></span>`;
 
   try {
-    await signIn(email, password);
-    console.log("Login successful - auth listener will handle redirect");
-  } catch (error) {
-    console.error("Error during login:", error);
+    const userCredential = await signIn(email, password);
+    showToast("Login successful!", "success");
 
-    // Display user-friendly error messages
-    switch (error.code) {
-      case "auth/user-not-found":
-        showToast("No user found with this email address");
-        break;
-      case "auth/wrong-password":
-        showToast("Incorrect password");
-        break;
-      case "auth/invalid-email":
-        showToast("Invalid email address");
-        break;
-      case "auth/too-many-requests":
-        showToast("Too many failed attempts. Please try again later");
-        break;
-      default:
-        showToast(error.message);
-    }
+    // Wait briefly before redirect to allow auth state to update
+    setTimeout(() => {
+      window.location.href = "home.html";
+    }, 500);
+  } catch (error) {
+    console.error("Login error:", error);
+    // Your existing error handling...
   } finally {
     loginBtn.disabled = false;
     loginBtn.textContent = "Login";
