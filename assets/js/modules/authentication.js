@@ -1,6 +1,6 @@
 import { showToast } from "./components.js";
 import { FormValidator } from "./validation.js";
-import { signUp, signOutUser, signIn } from "../../services/authServices.js";
+import { signUp, signOutUser, signIn, resetPassword } from "../../services/authServices.js";
 
 let validator = null;
 const registerForm = document.getElementById("registerForm");
@@ -141,4 +141,30 @@ export function showPassword() {
       }
     });
   });
+}
+
+// Reset password function
+export async function handleResetPassword(e) {
+  e.preventDefault();
+  const email = document.getElementById("emailInput").value;
+  const resetBtn = document.getElementById("resetBtn");
+
+  if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    showToast("Please enter a valid email address");
+    return;
+  }
+
+  resetBtn.disabled = true;
+  resetBtn.innerHTML = `<span class="loader"></span>`;
+
+  try {
+    await resetPassword(email);
+    showToast("Reset link sent! Check your email.", "success");
+  } catch (error) {
+    console.error("Reset error:", error);
+    showToast("Failed to send reset link. Try again");
+  } finally {
+    resetBtn.disabled = false;
+    resetBtn.textContent = "Send reset link";
+  }
 }

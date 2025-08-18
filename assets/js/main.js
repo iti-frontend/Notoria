@@ -3,6 +3,7 @@ import {
   logout,
   register,
   showPassword,
+  handleResetPassword,
 } from "./modules/authentication.js";
 import { setLogoHTML } from "./modules/components.js";
 import { checkAuthState } from "../services/authServices.js";
@@ -33,6 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       logout();
+    });
+  }
+
+  const resetBtn = document.getElementById("resetBtn");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", (e) => {
+      handleResetPassword(e);
     });
   }
 

@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {
   setDoc,
@@ -153,5 +154,16 @@ export async function signOutUser() {
     console.log("User signed out");
   } catch (error) {
     console.error("Error during sign-out:", error.message);
+  }
+}
+
+//----------------reset password
+export async function resetPassword(email) {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return { success: true };
+  } catch (error) {
+    console.error("Error sending reset email:", error.message);
+    throw error;
   }
 }
