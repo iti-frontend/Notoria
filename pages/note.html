@@ -11,7 +11,7 @@
     <!-- main css -->
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <!-- navbar -->
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid">
@@ -23,34 +23,51 @@
     </nav>
 
     <!-- note body -->
-    <div class="note__body py-3">
-      <div class="container">
-        <div
-          class="note__navigation d-flex align-items-center justify-content-between pb-2"
-        >
-          <a
-            href="../home.html"
-            class="d-flex align-items-center gap-1 text-muted"
-            ><i class="icon-chevron-left"></i> Go Back
-          </a>
-          <ul class="list-unstyled d-flex gap-2 align-items-center mb-0">
-            <li><i class="icon-trash"></i></li>
-            <li><i class="icon-archive"></i></li>
-            <li class="text-muted">Cancel</li>
-            <li class="text-primary">Save Note</li>
-          </ul>
+    <div class="container d-flex flex-column flex-grow-1 pt-3">
+      <div
+        class="note__navigation d-flex align-items-center justify-content-between pb-2"
+      >
+        <a
+          href="../home.html"
+          class="d-flex align-items-center gap-1 text-muted"
+          ><i class="icon-chevron-left"></i> Go Back
+        </a>
+        <ul class="list-unstyled d-flex gap-2 align-items-center mb-0">
+          <li><i class="icon-trash"></i></li>
+          <li><i class="icon-archive"></i></li>
+          <li class="text-muted">Cancel</li>
+          <li class="text-primary">Save Note</li>
+        </ul>
+      </div>
+      <div class="note__details border-top border-bottom py-3">
+        <h5 class="note__title">React Performance Optimization</h5>
+        <div class="row">
+          <div class="col-5"><i class="icon-tags"></i> Tags</div>
+          <div class="col-6">Dev,React</div>
         </div>
-        <div class="note__details border-top border-bottom">
-          <h5 class="note__title">React Performance Optimization</h5>
-          <div class="row">
-            <div class="col-5"><i class="icon-tags"></i> Tags</div>
-            <div class="col-6">Dev,React</div>
-          </div>
-          <div class="row">
-            <div class="col-5"><i class="icon-tags"></i> Last Edited</div>
-            <div class="col-6">29 Oct 2025</div>
-          </div>
+        <div class="row">
+          <div class="col-5"><i class="icon-tags"></i> Last Edited</div>
+          <div class="col-6">29 Oct 2025</div>
         </div>
+      </div>
+      <div class="note__body flex-grow-1 mt-2">
+        <h5 class="fw-lighter">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
+          deserunt qui laboriosam fuga in cum, distinctio totam numquam
+          accusamus iusto vitae natus explicabo veritatis vel vero eligendi?
+          Totam, hic dolores!
+        </h5>
+      </div>
+    </div>
+    <div class="note__footer bg-light-subtle border">
+      <div
+        class="container d-flex justify-content-between align-items-center px-4 py-2"
+      >
+        <i class="icon-bars"></i>
+        <i class="icon-bars"></i>
+        <i class="icon-archive"></i>
+        <i class="icon-tags"></i>
+        <i class="icon-bars"></i>
       </div>
     </div>
     <!-- main js -->
