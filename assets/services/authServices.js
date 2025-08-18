@@ -12,6 +12,7 @@ import {
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { showToast } from "../js/modules/components.js";
 
 import { auth, db } from "./firebase.js";
 
@@ -61,6 +62,9 @@ export async function signIn(email, password) {
     return userCredential;
   } catch (error) {
     console.error("Error during sign-in:", error.message);
+    if (error.code === "auth/invalid-credential") {
+      showToast("Invalid email or password");
+    }
     throw error;
   }
 }
